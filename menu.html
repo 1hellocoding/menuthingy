@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3-Part Full-Screen Menu</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Remove default margin from the body */
+        body {
+            margin: 0;
+            overflow: hidden; /* Prevents scrollbars from appearing */
+        }
+        /* This class ensures the image fills its container column */
+        .fill-column {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* This prevents the image from being distorted */
+        }
+        /* For mobile view, when columns are stacked, make each one take up a third of the screen's height */
+        @media (max-width: 767px) {
+            .grid-container > * {
+                height: 33.333vh; /* Use a more precise value */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!--
+      The main grid container.
+      - 'h-screen' and 'w-screen' make it take up the full viewport height and width.
+      - 'grid-cols-1 md:grid-cols-3' makes it stack on mobile and have 3 columns on larger screens.
+    -->
+    <div class="grid h-screen w-screen grid-cols-1 md:grid-cols-3 grid-container">
+
+        <!-- Left Column -->
+        <!-- The 'group' class enables child elements to change on hover -->
+        <div class="relative group h-full w-full overflow-hidden">
+            <img
+                src="https://i.postimg.cc/V6CMHqvX/temp-Image1-Qs-SIR.avif"
+                alt="Architectural detail"
+                class="fill-column group-hover:blur-sm group-hover:grayscale transition-all duration-300 ease-in-out"
+                onerror="this.onerror=null;this.src='https://placehold.co/800x1080/cccccc/ffffff?text=Image+1';"
+            >
+            <!-- Overlay with text, appears on hover -->
+            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
+                <span class="text-white text-4xl font-bold">Bands Gallery</span>
+            </div>
+        </div>
+
+        <!-- Middle Column -->
+        <div class="flex items-center justify-center w-full h-full bg-gray-100 border-l-8 border-r-8 border-gray-400">
+            <img
+                src="https://i.postimg.cc/PJMCB2jv/temp-Image-LSnusa.avif"
+                alt="Woman smiling"
+                class="w-48 h-48 sm:w-64 sm:h-64 lg:w-80 lg:h-80 object-cover rounded-full shadow-lg"
+                onerror="this.onerror=null;this.src='https://placehold.co/400x400/e0e0e0/ffffff?text=Profile';"
+            >
+        </div>
+
+        <!-- Right Column -->
+        <!-- The 'group' class enables child elements to change on hover -->
+        <div class="relative group h-full w-full overflow-hidden">
+            <img
+                src="https://i.postimg.cc/QdzFGFRm/temp-Imagevjzpuo.avif"
+                alt="Cityscape at dusk"
+                class="fill-column group-hover:blur-sm group-hover:grayscale transition-all duration-300 ease-in-out"
+                onerror="this.onerror=null;this.src='https://placehold.co/800x1080/999999/ffffff?text=Image+3';"
+            >
+            <!-- Overlay with text, appears on hover -->
+            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
+                <span class="text-white text-4xl font-bold">Venue Map</span>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
