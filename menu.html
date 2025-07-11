@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3-Part Full-Screen Menu</title>
-    <!-- Tailwind CSS for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* Remove default margin from the body */
@@ -28,29 +27,20 @@
 </head>
 <body>
 
-    <!--
-      The main grid container.
-      - 'h-screen' and 'w-screen' make it take up the full viewport height and width.
-      - 'grid-cols-1 md:grid-cols-3' makes it stack on mobile and have 3 columns on larger screens.
-    -->
     <div class="grid h-screen w-screen grid-cols-1 md:grid-cols-3 grid-container">
 
-        <!-- Left Column -->
-        <!-- The 'group' class enables child elements to change on hover -->
         <div class="relative group h-full w-full overflow-hidden">
             <img
-                src="https://i.postimg.cc/FKNkxYJH/temp-Imagez-YXjxu.avif"
-                alt="Architectural detail"
+                src="https://i.imghippo.com/files/jvPN6551fuA.png"
+                alt="Bands Gallery"
                 class="fill-column group-hover:blur-sm group-hover:grayscale transition-all duration-300 ease-in-out"
                 onerror="this.onerror=null;this.src='https://placehold.co/800x1080/cccccc/ffffff?text=Image+1';"
             >
-            <!-- Overlay with text, appears on hover -->
             <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
                 <span class="text-white text-4xl font-bold">Bands Gallery</span>
             </div>
         </div>
 
-        <!-- Middle Column -->
         <div class="flex items-center justify-center w-full h-full bg-gray-100 border-l-8 border-r-8 border-gray-400">
             <img
                 src="https://i.postimg.cc/PJMCB2jv/temp-Image-LSnusa.avif"
@@ -60,16 +50,13 @@
             >
         </div>
 
-        <!-- Right Column -->
-        <!-- The 'group' class enables child elements to change on hover -->
         <div class="relative group h-full w-full overflow-hidden">
             <img
-                src="https://i.postimg.cc/T1fdW477/temp-Imagenx-BPO7.avif"
-                alt="Cityscape at dusk"
+                src="https://i.imghippo.com/files/rzcD8843JAY.png"
+                alt="Venue Map"
                 class="fill-column group-hover:blur-sm group-hover:grayscale transition-all duration-300 ease-in-out"
                 onerror="this.onerror=null;this.src='https://placehold.co/800x1080/999999/ffffff?text=Image+3';"
             >
-            <!-- Overlay with text, appears on hover -->
             <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
                 <span class="text-white text-4xl font-bold">Venue Map</span>
             </div>
