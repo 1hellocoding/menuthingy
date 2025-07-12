@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3-Part Menu with Gallery and Embedded Map</title>
+    <title>2-Part Menu with Gallery and Embedded Map</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* Prevents unwanted margins and scrollbars */
@@ -34,7 +34,7 @@
             display: flex;
             flex-direction: column;
         }
-        
+       
         #menu-page { z-index: 20; }
         #gallery-page, #map-page { z-index: 30; }
 
@@ -55,10 +55,21 @@
             border: none;
             border-radius: 12px;
         }
-        
+
+        /* Custom class for 3D logo effect */
+        .logo-3d {
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 
+                /* Outer shadow for depth */
+                0 20px 30px -5px rgba(0, 0, 0, 0.5),
+                /* Inner shadow for embossed look */
+                inset 0 4px 10px rgba(255, 255, 255, 0.2),
+                inset 0 -5px 10px rgba(0, 0, 0, 0.3);
+        }
+       
         @media (max-width: 767px) {
             #menu-page .grid-container > * {
-                height: 33.333vh;
+                height: 50vh; /* Changed from 33.33vh to 50vh for 2 items */
             }
             #map-iframe-container { padding: 0 10px 10px 10px; } /* Reduce inset on mobile */
         }
@@ -67,22 +78,21 @@
 <body>
 
     <div id="menu-page" class="page-screen">
-        <div class="grid h-screen w-screen grid-cols-1 md:grid-cols-3 grid-container">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[21] pointer-events-none">
+            <img src="https://i.imghippo.com/files/KSY8833a.png" alt="Woman smiling" class="w-48 h-48 sm:w-64 sm:h-64 lg:w-80 lg:h-80 object-cover rounded-full logo-3d pointer-events-auto" onerror="this.onerror=null;this.src='https://placehold.co/400x400/e0e0e0/ffffff?text=Profile';">
+        </div>
+
+        <div class="grid h-screen w-screen grid-cols-1 md:grid-cols-2 grid-container">
             <div id="bands-trigger" class="relative group h-full w-full overflow-hidden cursor-pointer">
-                <img src="https://i.imghippo.com/files/jvPN6551fuA.png" alt="Bands Gallery" class="fill-column group-hover:blur-sm group-hover:grayscale transition-all duration-300 ease-in-out" onerror="this.onerror=null;this.src='https://placehold.co/800x1080/cccccc/ffffff?text=Image+1';">
+                <img src="https://i.imghippo.com/files/WO2661uA.jpg" alt="Bands Gallery" class="fill-column group-hover:blur-sm group-hover:grayscale transition-all duration-300 ease-in-out" onerror="this.onerror=null;this.src='https://placehold.co/800x1080/cccccc/ffffff?text=Image+1';">
                 <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
                     <span class="text-white text-4xl font-bold">Bands Gallery</span>
                 </div>
             </div>
-            <div class="flex items-center justify-center w-full h-full bg-gray-100 border-l-8 border-r-8 border-gray-400">
-                <img src="https://i.imghippo.com/files/KSY8833a.png
-
-" alt="Woman smiling" class="w-48 h-48 sm:w-64 sm:h-64 lg:w-80 lg:h-80 object-cover rounded-full shadow-lg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/e0e0e0/ffffff?text=Profile';">
-            </div>
             <div id="map-trigger" class="relative group h-full w-full overflow-hidden cursor-pointer">
-                <img src="https://i.imghippo.com/files/rzcD8843JAY.png" alt="Venue Map" class="fill-column group-hover:blur-sm group-hover:grayscale transition-all duration-300 ease-in-out" onerror="this.onerror=null;this.src='https://placehold.co/800x1080/999999/ffffff?text=Image+3';">
+                <img src="https://i.imghippo.com/files/rzcD8843JAY.png" alt="My Bands Tonight" class="fill-column group-hover:blur-sm group-hover:grayscale transition-all duration-300 ease-in-out" onerror="this.onerror=null;this.src='https://placehold.co/800x1080/999999/ffffff?text=Image+3';">
                 <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
-                    <span class="text-white text-4xl font-bold">Venue Map</span>
+                    <span class="text-white text-4xl font-bold">My Bands Tonight</span>
                 </div>
             </div>
         </div>
@@ -91,8 +101,8 @@
     <div id="gallery-page" class="page-screen">
         <div class="sticky top-0 bg-gray-900 bg-opacity-80 backdrop-blur-sm p-4 z-50 text-center">
              <button id="back-to-menu-from-gallery" class="bg-white text-gray-900 font-bold py-2 px-5 rounded-lg hover:bg-gray-300 transition-colors duration-300">
-                &larr; Back to Menu
-            </button>
+                 &larr; Back to Menu
+             </button>
         </div>
         <div class="p-4 md:p-8">
              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12 max-w-7xl mx-auto">
@@ -132,7 +142,7 @@
                 <div><a href="https://www.therealmband.com/" target="_blank" rel="noopener noreferrer"><img src="https://images.squarespace-cdn.com/content/v1/67f6da6bf414474b61afbd21/00acffa0-e0f2-40a7-b14d-fb000c090573/The+Realm.jpg" alt="The Realm" class="w-full h-auto object-cover aspect-square"></a><h3 class="text-center text-xl mt-4">The Realm</h3></div>
                 <div><a href="https://www.theteardownsband.com/" target="_blank" rel="noopener noreferrer"><img src="https://images.squarespace-cdn.com/content/v1/67f6da6bf414474b61afbd21/03a7ccbb-bc28-43c5-8d83-ec0c29386f70/Jon+Singing+yellow+hat+tall.jpg" alt="The Teardowns" class="w-full h-auto object-cover aspect-square"></a><h3 class="text-center text-xl mt-4">The Teardowns</h3></div>
                 <div><a href="https://www.facebook.com/WinstonIrieMusic/" target="_blank" rel="noopener noreferrer"><img src="https://images.squarespace-cdn.com/content/v1/67f6da6bf414474b61afbd21/09fe64e3-36f6-4c31-b7e6-9765e2d61121/Winston+Irie.jpg" alt="Winston Irie" class="w-full h-auto object-cover aspect-square"></a><h3 class="text-center text-xl mt-4">Winston Irie</h3></div>
-            </div>
+             </div>
         </div>
     </div>
 
