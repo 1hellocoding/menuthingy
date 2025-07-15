@@ -21,7 +21,8 @@
 
         /* Custom class for 3D logo effect */
         .logo-3d {
-            border: 3px solid rgba(255, 255, 255, 0.1);
+            /* The border was being applied to the image, let's keep it there for the best effect */
+            /* We will apply the shadow to the container (the 'a' tag) */
             box-shadow: 
                 /* Outer shadow for depth */
                 0 20px 30px -5px rgba(0, 0, 0, 0.5),
@@ -41,8 +42,8 @@
 
     <div id="menu-page" class="relative">
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
-            <a href="#" class="relative group block w-48 h-48 sm:w-64 sm:h-64 lg:w-80 lg:h-80 rounded-full cursor-pointer">
-                <img src="https://i.imghippo.com/files/KSY8833a.png" alt="My Bands Tonight" class="w-full h-full object-cover rounded-full logo-3d group-hover:blur-sm group-hover:grayscale transition-all duration-300 ease-in-out" onerror="this.onerror=null;this.src='https://placehold.co/400x400/e0e0e0/ffffff?text=Profile';">
+            <a href="#" class="relative group block w-48 h-48 sm:w-64 sm:h-64 lg:w-80 lg:h-80 rounded-full cursor-pointer logo-3d">
+                <img src="https://i.imghippo.com/files/KSY8833a.png" alt="My Bands Tonight" class="w-full h-full object-cover rounded-full group-hover:blur-sm group-hover:grayscale transition-all duration-300 ease-in-out" style="border: 3px solid rgba(255, 255, 255, 0.1);" onerror="this.onerror=null;this.src='https://placehold.co/400x400/e0e0e0/ffffff?text=Profile';">
                 <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out rounded-full">
                     <span class="text-white text-3xl sm:text-4xl font-bold text-center">My Bands Tonight</span>
                 </div>
