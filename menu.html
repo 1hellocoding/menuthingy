@@ -3,57 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2-Part Menu with Gallery and Embedded Map</title>
+    <title>2-Part Menu with Direct Links</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* Prevents unwanted margins and scrollbars */
         body {
             margin: 0;
             overflow: hidden; 
+            background-color: #212121; /* Set a background color for the body */
         }
-
-        /* Defines the behavior of the sliding "pages" */
-        .page-screen {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            transition: transform 0.6s cubic-bezier(0.86, 0, 0.07, 1); /* Smooth sliding animation */
-            overflow-y: auto; /* Allows the content inside to be scrollable */
-            background-color: #212121;
-            color: #ffffff;
-        }
-
-        /* Initial positions for the side pages */
-        #gallery-page { transform: translateX(-100%); }
-        #map-page {
-            transform: translateX(100%);
-            padding: 0; /* Remove padding for the iframe */
-            background-color: #f9f9f9; /* Match map background */
-            display: flex;
-            flex-direction: column;
-        }
-       
-        #menu-page { z-index: 20; }
-        #gallery-page, #map-page { z-index: 30; }
 
         .fill-column {
             width: 100%;
             height: 100%;
             object-fit: cover;
-        }
-
-        /* Styles for the map iframe to make it fill the space */
-        #map-iframe-container {
-            flex-grow: 1; /* Allows the container to fill the remaining space */
-            padding: 0 40px 40px 40px; /* Inset on left, right, and bottom */
-        }
-        #map-iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            border-radius: 12px;
         }
 
         /* Custom class for 3D logo effect */
@@ -66,127 +29,37 @@
                 inset 0 4px 10px rgba(255, 255, 255, 0.2),
                 inset 0 -5px 10px rgba(0, 0, 0, 0.3);
         }
-       
+        
         @media (max-width: 767px) {
             #menu-page .grid-container > * {
-                height: 50vh; /* Changed from 33.33vh to 50vh for 2 items */
+                height: 50vh; /* Each link takes up half the screen height on mobile */
             }
-            #map-iframe-container { padding: 0 10px 10px 10px; } /* Reduce inset on mobile */
         }
     </style>
 </head>
 <body>
 
-    <div id="menu-page" class="page-screen">
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[21] pointer-events-none">
+    <div id="menu-page">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 pointer-events-none">
             <img src="https://i.imghippo.com/files/KSY8833a.png" alt="Woman smiling" class="w-48 h-48 sm:w-64 sm:h-64 lg:w-80 lg:h-80 object-cover rounded-full logo-3d pointer-events-auto" onerror="this.onerror=null;this.src='https://placehold.co/400x400/e0e0e0/ffffff?text=Profile';">
         </div>
 
         <div class="grid h-screen w-screen grid-cols-1 md:grid-cols-2 grid-container">
-            <div id="bands-trigger" class="relative group h-full w-full overflow-hidden cursor-pointer">
+            <a href="/gallery" class="relative group h-full w-full overflow-hidden cursor-pointer">
                 <img src="https://i.imghippo.com/files/WO2661uA.jpg" alt="Bands Gallery" class="fill-column group-hover:blur-sm group-hover:grayscale transition-all duration-300 ease-in-out" onerror="this.onerror=null;this.src='https://placehold.co/800x1080/cccccc/ffffff?text=Image+1';">
                 <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
                     <span class="text-white text-4xl font-bold">Bands Gallery</span>
                 </div>
-            </div>
-            <div id="map-trigger" class="relative group h-full w-full overflow-hidden cursor-pointer">
+            </a>
+            
+            <a href="/venue-map" class="relative group h-full w-full overflow-hidden cursor-pointer">
                 <img src="https://i.imghippo.com/files/rzcD8843JAY.png" alt="My Bands Tonight" class="fill-column group-hover:blur-sm group-hover:grayscale transition-all duration-300 ease-in-out" onerror="this.onerror=null;this.src='https://placehold.co/800x1080/999999/ffffff?text=Image+3';">
                 <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
-                    <span class="text-white text-4xl font-bold">My Bands Tonight</span>
+                    <span class="text-white text-4xl font-bold">Venue Map</span>
                 </div>
-            </div>
+            </a>
         </div>
     </div>
-
-    <div id="gallery-page" class="page-screen">
-        <div class="sticky top-0 bg-gray-900 bg-opacity-80 backdrop-blur-sm p-4 z-50 text-center">
-             <button id="back-to-menu-from-gallery" class="bg-white text-gray-900 font-bold py-2 px-5 rounded-lg hover:bg-gray-300 transition-colors duration-300">
-                 &larr; Back to Menu
-             </button>
-        </div>
-        <div class="p-4 md:p-8">
-             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12 max-w-7xl mx-auto">
-                <div><a href="https://www.annietrezza.com/" target="_blank" rel="noopener noreferrer"><img src="https://images.squarespace-cdn.com/content/v1/67f6da6bf414474b61afbd21/bacd6e81-4950-474f-9444-b88d86a79c27/Annie+Trezza.jpg" alt="Annie Trezza" class="w-full h-auto object-cover aspect-square"></a><h3 class="text-center text-xl mt-4">Annie Trezza</h3></div>
-                <div><a href="https://www.facebook.com/BelleCurvesBand/" target="_blank" rel="noopener noreferrer"><img src="https://images.squarespace-cdn.com/content/v1/67f6da6bf414474b61afbd21/66aa14c0-35e7-4ffe-83d0-8ed2e6604677/Belle+Curves.jpg" alt="Belle Curves" class="w-full h-auto object-cover aspect-square"></a><h3 class="text-center text-xl mt-4">Belle Curves</h3></div>
-                <div><a href="https://www.instagram.com/bigkarma_band/?hl=en" target="_blank" rel="noopener noreferrer"><img src="https://images.squarespace-cdn.com/content/v1/67f6da6bf414474b61afbd21/f582ddd4-b077-44b0-89b1-c25e14a74a96/Big+Karma.jpg" alt="Big Karma" class="w-full h-auto object-cover aspect-square"></a><h3 class="text-center text-xl mt-4">Big Karma</h3></div>
-                <div><a href="https://bingobango.band/" target="_blank" rel="noopener noreferrer"><img src="https://images.squarespace-cdn.com/content/v1/67f6da6bf414474b61afbd21/f2ced1d5-4996-4380-a277-4695fe4806a9/Bingo+Bango.jpg" alt="Bingo Bango" class="w-full h-auto object-cover aspect-square"></a><h3 class="text-center text-xl mt-4">Bingo Bango</h3></div>
-                <div><a href="https://www.easthamptonstar.com/archive/black-and-sparrow-around-again" target="_blank" rel="noopener noreferrer"><img src="https://images.squarespace-cdn.com/content/v1/67f6da6bf414474b61afbd21/f92652bf-e709-4f25-8e04-91dc8e33ef09/Black+and+Sparrow.jpg" alt="Black and Sparrow" class="w-full h-auto object-cover aspect-square"></a><h3 class="text-center text-xl mt-4">Black & Sparrow</h3></div>
-                <div><a href="https://www.facebook.com/brad.penuel" target="_blank" rel="noopener noreferrer"><img src="https://images.squarespace-cdn.com/content/v1/67f6da6bf414474b61afbd21/1f29201a-8f9e-4684-a661-5428a527d275/Hopefully+Forgiven.jpg" alt="Brad Penuel" class="w-full h-auto object-cover aspect-square"></a><h3 class="text-center text-xl mt-4">Brad Penuel</h3></div>
-                <div><a href="https://www.facebook.com/p/Damaged-Goods-on-Long-Island-100063223065635/" target="_blank" rel="noopener noreferrer"><img src="https://images.squarespace-cdn.com/content/v1/67f6da6bf414474b61afbd21/76c69dda-2464-4dc4-98b9-df6eaf132eb9/Damaged+Goods.jpg" alt="Damaged Goods" class="w-full h-auto object-cover aspect-square"></a><h3 class="text-center text-xl mt-4">Damaged Goods</h3></div>
-                <div><a href="https://www.facebook.com/p/Fred-Raimondo-100063684874052/" target="_blank" rel="noopener noreferrer"><img src="https://images.squarespace-cdn.com/content/v1/67f6da6bf414474b61afbd21/6ed97ce7-6f1a-4207-8363-9fd50f1a1b82/Fred+Raimondo.jpg" alt="Fred Raimondo" class="w-full h-auto object-cover aspect-square"></a><h3 class="text-center text-xl mt-4">Fred Raimondo</h3></div>
-                <div><a href="https://www.genecasey.com/" target="_blank" rel="noopener noreferrer"><img src="https://images.squarespace-cdn.com/content/v1/67f6da6bf414474b61afbd21/70f5a3c0-c566-4934-8fc7-c8053d7eb62b/Gene+Casey.jpg" alt="Gene Casey" class="w-full h-auto object-cover aspect-square"></a><h3 class="text-center text-xl mt-4">Gene Casey</h3></div>
-                <div><a href="https://www.wearehellobrooklyn.com/" target="_blank" rel="noopener noreferrer"><img src="https://images.squarespace-cdn.com/content/v1/67f6da6bf414474b61afbd21/8cab45d1-17c2-47f7-835c-9541043bda72/Hello+Brooklyn.jpg" alt="Hello Brooklyn" class="w-full h-auto object-cover aspect-square"></a><h3 class="text-center text-xl mt-4">Hello Brooklyn</h3></div>
-                <div><a href="https://www.thehoodooloungers.com/" target="_blank" rel="noopener noreferrer"><img src="https://images.squarespace-cdn.com/content/v1/67f6da6bf414474b61afbd21/b63adb94-eadf-45c1-be55-c650227ddb45/Hoodoo+Loungers.jpg" alt="Hoodoo Loungers" class="w-full h-auto object-cover aspect-square"></a><h3 class="text-center text-xl mt-4">Hoodoo Loungers</h3></div>
-                <div><a href="https://www.hopefullyforgiven.com/" target="_blank" rel="noopener noreferrer"><img src="https://images.squarespace-cdn.com/content/v1/67f6da6bf414474b61afbd21/1f29201a-8f9e-4684-a661-5428a527d275/Hopefully+Forgiven.jpg" alt="Hopefully Forgiven" class="w-full h-auto object-cover aspect-square"></a><h3 class="text-center text-xl mt-4">Hopefully Forgiven</h3></div>
-                <div><a href="https://www.indaeaton.com/" target="_blank" rel="noopener noreferrer"><img src="https://images.squarespace-cdn.com/content/v1/67f6da6bf414474b61afbd21/82eb2afe-6e00-4182-81ae-5d37e19ba074/Inda+Eaton.jpg" alt="Inda Eaton" class="w-full h-auto object-cover aspect-square"></a><h3 class="text-center text-xl mt-4">Inda Eaton</h3></div>
-                <div><a href="https://www.jakelear.com/" target="_blank" rel="noopener noreferrer"><img src="https://images.squarespace-cdn.com/content/v1/67f6da6bf414474b61afbd21/262230e8-a8f6-4109-a7d3-5487b5340c41/Jake+Lear.jpg" alt="Jake Lear" class="w-full h-auto object-cover aspect-square"></a><h3 class="text-center text-xl mt-4">Jake Lear</h3></div>
-                <div><a href="https://jettykoon.com/" target="_blank" rel="noopener noreferrer"><img src="https://images.squarespace-cdn.com/content/v1/67f6da6bf414474b61afbd21/4906028f-e926-4750-83de-8acd26d99a54/JETTYKOON.jpg" alt="Jettykoon" class="w-full h-auto object-cover aspect-square"></a><h3 class="text-center text-xl mt-4">Jettykoon</h3></div>
-                <div><a href="https://en.wikipedia.org/wiki/Joe_Delia" target="_blank" rel="noopener noreferrer"><img src="https://images.squarespace-cdn.com/content/v1/67f6da6bf414474b61afbd21/501d2a14-835b-4e60-891b-f50dd439417d/Joe+Delia+%26+The+Thieves.jpg" alt="Joe Delia" class="w-full h-auto object-cover aspect-square"></a><h3 class="text-center text-xl mt-4">Joe Delia</h3></div>
-                <div><a href="https://jondivello.com/" target="_blank" rel="noopener noreferrer"><img src="https://images.squarespace-cdn.com/content/v1/67f6da6bf414474b61afbd21/e414e9b7-d8a7-4e46-a273-9e0f4e3a469f/Jon+Divello.jpg" alt="Jon Divello" class="w-full h-auto object-cover aspect-square"></a><h3 class="text-center text-xl mt-4">Jon Divello</h3></div>
-                <div><a href="https://www.juliakingmusic.com/" target="_blank" rel="noopener noreferrer"><img src="https://images.squarespace-cdn.com/content/v1/67f6da6bf414474b61afbd21/2f85886b-0c96-4fcf-b800-4f5ae79b8974/Julia+King.jpg" alt="Julia King" class="w-full h-auto object-cover aspect-square"></a><h3 class="text-center text-xl mt-4">Julia King</h3></div>
-                <div><a href="https://www.reverbnation.com/klyphblackandrumorhasit" target="_blank" rel="noopener noreferrer"><img src="https://images.squarespace-cdn.com/content/v1/67f6da6bf414474b61afbd21/1f094b8d-f670-4c94-a85a-57f45c62527d/Klyph+Black.jpg" alt="Klyph Black" class="w-full h-auto object-cover aspect-square"></a><h3 class="text-center text-xl mt-4">Klyph Black</h3></div>
-                <div><a href="https://littleheadthinks.com/" target="_blank" rel="noopener noreferrer"><img src="https://images.squarespace-cdn.com/content/v1/67f6da6bf414474b61afbd21/38891a3c-8e3f-4bf8-b3fa-149114f70134/Little+Head+Thinks.jpg" alt="Little Head Thinks" class="w-full h-auto object-cover aspect-square"></a><h3 class="text-center text-xl mt-4">Little Head Thinks</h3></div>
-                <div><a href="https://www.lynnblueband.com/" target="_blank" rel="noopener noreferrer"><img src="https://images.squarespace-cdn.com/content/v1/67f6da6bf414474b61afbd21/32a0a80d-0d6f-46ff-a127-5e2885a54a88/Lynn+Blue+Band.jpg" alt="Lynn Blue Band" class="w-full h-auto object-cover aspect-square"></a><h3 class="text-center text-xl mt-4">Lynn Blue Band</h3></div>
-                <div><a href="https://www.nancyatlas.com/" target="_blank" rel="noopener noreferrer"><img src="https://images.squarespace-cdn.com/content/v1/67f6da6bf414474b61afbd21/9d5679a0-b9bc-4c88-bb1b-576d71a13ebb/Nancy+Atlas+Project.jpg" alt="Nancy Atlas" class="w-full h-auto object-cover aspect-square"></a><h3 class="text-center text-xl mt-4">Nancy Atlas</h3></div>
-                <div><a href="https://www.instagram.com/rayredmusic/" target="_blank" rel="noopener noreferrer"><img src="https://images.squarespace-cdn.com/content/v1/67f6da6bf414474b61afbd21/2f876d4f-62bf-4da6-ad45-ab05f86383fd/Ray+Red.jpg" alt="Ray Red" class="w-full h-auto object-cover aspect-square"></a><h3 class="text-center text-xl mt-4">Ray Red</h3></div>
-                <div><a href="https://www.robeuropemusic.com/" target="_blank" rel="noopener noreferrer"><img src="https://images.squarespace-cdn.com/content/v1/67f6da6bf414474b61afbd21/437a6a4b-bdac-4c20-9dfa-652fbcdd0b59/Foster+Europe.jpg" alt="Rob Europe" class="w-full h-auto object-cover aspect-square"></a><h3 class="text-center text-xl mt-4">Rob Europe</h3></div>
-                <div><a href="https://www.facebook.com/robertbrueymusic/" target="_blank" rel="noopener noreferrer"><img src="https://images.squarespace-cdn.com/content/v1/67f6da6bf414474b61afbd21/3a6d6c6e-ec2e-48a1-9538-1bfbdf77e56a/Robert+Bruey.jpg" alt="Robert Bruey" class="w-full h-auto object-cover aspect-square"></a><h3 class="text-center text-xl mt-4">Robert Bruey</h3></div>
-                <div><a href="https://www.roriekelly.com/" target="_blank" rel="noopener noreferrer"><img src="https://images.squarespace-cdn.com/content/v1/67f6da6bf414474b61afbd21/a139b22f-6686-4f64-bcc4-347066a1d38c/Rorie+Kelly.jpg" alt="Rorie Kelly" class="w-full h-auto object-cover aspect-square"></a><h3 class="text-center text-xl mt-4">Rorie Kelly</h3></div>
-                <div><a href="https://www.rosesgrove.com/" target="_blank" rel="noopener noreferrer"><img src="https://images.squarespace-cdn.com/content/v1/67f6da6bf414474b61afbd21/b5c9985c-0f4a-4e54-9b97-9eafc3740100/Roses+Grove+Band.jpg" alt="Roses Grove Band" class="w-full h-auto object-cover aspect-square"></a><h3 class="text-center text-xl mt-4">Roses Grove Band</h3></div>
-                <div><a href="https://www.facebook.com/RUMORHASITBAND/" target="_blank" rel="noopener noreferrer"><img src="https://images.squarespace-cdn.com/content/v1/67f6da6bf414474b61afbd21/63434770-5482-43bc-9e89-f3f169f6241e/Rumor+Has+It.jpg" alt="Rumor Has It" class="w-full h-auto object-cover aspect-square"></a><h3 class="text-center text-xl mt-4">Rumor Has It</h3></div>
-                <div><a href="https://www.instagram.com/rumpunchmafia/" target="_blank" rel="noopener noreferrer"><img src="https://images.squarespace-cdn.com/content/v1/67f6da6bf414474b61afbd21/4293f66c-4f6d-4464-9e7f-e4c88798d45d/Rum+Punch+Mafia.jpg" alt="Rum Punch Mafia" class="w-full h-auto object-cover aspect-square"></a><h3 class="text-center text-xl mt-4">Rum Punch Mafia</h3></div>
-                <div><a href="https://sarahgrossmusic.com/" target="_blank" rel="noopener noreferrer"><img src="https://images.squarespace-cdn.com/content/v1/67f6da6bf414474b61afbd21/32e4b171-363f-4b3e-a740-cc0ff93fbbbe/Sarah+Gross.jpg" alt="Sarah Gross" class="w-full h-auto object-cover aspect-square"></a><h3 class="text-center text-xl mt-4">Sarah Gross</h3></div>
-                <div><a href="https://www.instagram.com/sarahconwaysong/" target="_blank" rel="noopener noreferrer"><img src="https://images.squarespace-cdn.com/content/v1/67f6da6bf414474b61afbd21/0d96e5fd-8d05-411a-a986-691a05bf0b16/Sarah+Conway.jpg" alt="Sarah Conway" class="w-full h-auto object-cover aspect-square"></a><h3 class="text-center text-xl mt-4">Sarah Conway</h3></div>
-                <div><a href="https://www.facebook.com/DogWatchersEH/" target="_blank" rel="noopener noreferrer"><img src="https://images.squarespace-cdn.com/content/v1/67f6da6bf414474b61afbd21/b890b3ea-02e0-4147-989b-16c50ce57d70/The+Dogwatchers.jpg" alt="The Dogwatchers" class="w-full h-auto object-cover aspect-square"></a><h3 class="text-center text-xl mt-4">The Dogwatchers</h3></div>
-                <div><a href="https://www.facebook.com/themoondogs/" target="_blank" rel="noopener noreferrer"><img src="https://images.squarespace-cdn.com/content/v1/67f6da6bf414474b61afbd21/db31d9c2-a7be-48e9-9527-d35ad9a5f6c6/The+Moondogs.jpg" alt="The Moondogs" class="w-full h-auto object-cover aspect-square"></a><h3 class="text-center text-xl mt-4">The Moondogs</h3></div>
-                <div><a href="https://www.therealmband.com/" target="_blank" rel="noopener noreferrer"><img src="https://images.squarespace-cdn.com/content/v1/67f6da6bf414474b61afbd21/00acffa0-e0f2-40a7-b14d-fb000c090573/The+Realm.jpg" alt="The Realm" class="w-full h-auto object-cover aspect-square"></a><h3 class="text-center text-xl mt-4">The Realm</h3></div>
-                <div><a href="https://www.theteardownsband.com/" target="_blank" rel="noopener noreferrer"><img src="https://images.squarespace-cdn.com/content/v1/67f6da6bf414474b61afbd21/03a7ccbb-bc28-43c5-8d83-ec0c29386f70/Jon+Singing+yellow+hat+tall.jpg" alt="The Teardowns" class="w-full h-auto object-cover aspect-square"></a><h3 class="text-center text-xl mt-4">The Teardowns</h3></div>
-                <div><a href="https://www.facebook.com/WinstonIrieMusic/" target="_blank" rel="noopener noreferrer"><img src="https://images.squarespace-cdn.com/content/v1/67f6da6bf414474b61afbd21/09fe64e3-36f6-4c31-b7e6-9765e2d61121/Winston+Irie.jpg" alt="Winston Irie" class="w-full h-auto object-cover aspect-square"></a><h3 class="text-center text-xl mt-4">Winston Irie</h3></div>
-             </div>
-        </div>
-    </div>
-
-    <div id="map-page" class="page-screen">
-        <div class="w-full text-center p-4" style="background-color: #f9f9f9; flex-shrink: 0;">
-            <button id="back-to-menu-from-map" class="bg-gray-800 text-white font-bold py-2 px-5 rounded-lg hover:bg-gray-600 transition-colors duration-300">
-                &larr; Back to Menu
-            </button>
-        </div>
-        <div id="map-iframe-container" class="flex-grow">
-            <iframe id="map-iframe" src="https://1hellocoding.github.io/calendar-widget/online_viewer_net-14.html"></iframe>
-        </div>
-    </div>
-
-    <script>
-        const menuPage = document.getElementById('menu-page');
-        const galleryPage = document.getElementById('gallery-page');
-        const mapPage = document.getElementById('map-page');
-        const bandsTrigger = document.getElementById('bands-trigger');
-        const mapTrigger = document.getElementById('map-trigger');
-        const backToMenuFromGallery = document.getElementById('back-to-menu-from-gallery');
-        const backToMenuFromMap = document.getElementById('back-to-menu-from-map');
-
-        function showGallery() {
-            menuPage.style.transform = 'translateX(100%)';
-            galleryPage.style.transform = 'translateX(0)';
-        }
-
-        function showMap() {
-            menuPage.style.transform = 'translateX(-100%)';
-            mapPage.style.transform = 'translateX(0)';
-        }
-
-        function showMenu() {
-            menuPage.style.transform = 'translateX(0)';
-            galleryPage.style.transform = 'translateX(-100%)';
-            mapPage.style.transform = 'translateX(100%)';
-        }
-
-        bandsTrigger.addEventListener('click', showGallery);
-        mapTrigger.addEventListener('click', showMap);
-        backToMenuFromGallery.addEventListener('click', showMenu);
-        backToMenuFromMap.addEventListener('click', showMenu);
-    </script>
 
 </body>
 </html>
