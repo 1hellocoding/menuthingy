@@ -8,7 +8,7 @@
     <style>
         body {
             margin: 0;
-            overflow: hidden; 
+            overflow: hidden;
             background-color: #212121;
         }
         .fill-column {
@@ -17,7 +17,7 @@
             object-fit: cover;
         }
         .logo-3d {
-            box-shadow: 
+            box-shadow:
                 0 20px 30px -5px rgba(0, 0, 0, 0.5),
                 inset 0 4px 10px rgba(255, 255, 255, 0.2),
                 inset 0 -5px 10px rgba(0, 0, 0, 0.3);
@@ -32,9 +32,17 @@
 <body>
 
     <div id="menu-page" class="relative">
+        <div class="absolute top-4 right-4 z-20">
+            <a href="mailto:mybandstonight@gmail.com"
+               class="inline-block p-2 bg-black/20 border border-white/40 rounded-2xl backdrop-blur-sm
+                      transition duration-300 hover:bg-black/30 hover:border-white/50">
+                <span class="px-4 py-1 font-bold text-white">Contact</span>
+            </a>
+        </div>
+
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
             <a href="https://www.mybandstonight.com/my-bands-tonight" target="_top" class="relative group block w-48 h-48 sm:w-64 sm:h-64 lg:w-80 lg:h-80 rounded-full cursor-pointer logo-3d">
-                <img src="https://i.imghippo.com/files/vPMA5186Y.png" alt="My Bands Tonight" class="w-full h-full object-cover rounded-full group-hover:blur-sm group-hover:grayscale transition-all duration-300 ease-in-out" style="border: 3px solid rgba(255, 255, 255, 0.1);" onerror="this.onerror=null;this.src='https.placehold.co/400x400/e0e0e0/ffffff?text=Profile';">
+                <img src="https://i.imghippo.com/files/vPMA5186Y.png" alt="My Bands Tonight" class="w-full h-full object-cover rounded-full group-hover:blur-sm group-hover:grayscale transition-all duration-300 ease-in-out" style="border: 3px solid rgba(255, 255, 255, 0.1);" onerror="this.onerror=null;this.src='https://placehold.co/400x400/e0e0e0/ffffff?text=Profile';">
                 <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out rounded-full">
                     <span class="text-white text-3xl sm:text-4xl font-bold text-center">My Bands Tonight</span>
                 </div>
@@ -48,7 +56,7 @@
                     <span class="text-white text-4xl font-bold">Bands Gallery</span>
                 </div>
             </a>
-            
+
             <a href="https://www.mybandstonight.com/venue-map" target="_top" class="relative group h-full w-full overflow-hidden cursor-pointer">
                 <img src="https://i.imghippo.com/files/8726roY.png" alt="My Bands Tonight" class="fill-column group-hover:blur-sm group-hover:grayscale transition-all duration-300 ease-in-out" onerror="this.onerror=null;this.src='https://placehold.co/800x1080/999999/ffffff?text=Image+3';">
                 <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
